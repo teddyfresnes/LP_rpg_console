@@ -38,7 +38,7 @@ public class WeaponStore
 	public void displayTo(Player player)
 	{
 		// AFFICHAGE
-		System.out.println("Bienvenue dans "+this.shop_name+", que voulez vous achetez?");
+		System.out.println("Bienvenue dans "+this.shop_name+", que voulez vous achetez?\n");
 	    for (int i = 0; i < stock.size(); i++)
 	    {
 	        Weapon item_stock = stock.get(i);

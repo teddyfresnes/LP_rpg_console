@@ -23,6 +23,9 @@ public class Player
 	
 	protected double hp_multiplier;
 	protected double damage_multiplier;
+	protected double exp_multiplier;
+	protected double money_multiplier;
+	
 	
 	ArrayList<Weapon> bag;
 	public Weapon selectedWeapon;
@@ -45,6 +48,8 @@ public class Player
 		
 		this.hp_multiplier = 1;
 		this.damage_multiplier = 1;
+		this.exp_multiplier = 1;
+		this.money_multiplier = 1;
 		
 		this.bag = new ArrayList<>();
 		this.selectedWeapon = new Weapon("Mains nus", 0, 0);

@@ -5,7 +5,10 @@ import java.util.*;
 
 
 import characters.*;
+import weapons.Hammer;
+
 import java.io.IOException;
+import java.util.Random;
 
 
 public class MainGame
@@ -29,21 +32,18 @@ public class MainGame
 	    System.out.print("\n\n\n\n");
 	    System.out.print("\n[1] Guerrier\t(Avantage de dégat)");
 	    System.out.print("\n[2] Tank    \t(Avantage de vie)");
+	    System.out.print("\n[3] Assassin\t(Avantage de dégat, malus de vie)");
+	    System.out.print("\n[4] Gobelin \t(Avantage à l'argent)");
+	    System.out.print("\n[5] Mage    \t(Avantage d'expérience)");
 	    System.out.print("\nQuel personnage vous correspond le mieux :\n> ");
 	    choice = input.nextLine();
 	    Player joueur;
-	    if (choice.equals("1"))
-	    {
-	    	joueur = new Warrior(username);
-	    }
-	    else if (choice.equals("2"))
-	    {
-	    	joueur = new Tank(username);
-	    }
-	    else
-	    {
-	    	joueur = new Player(username); // sans sous classe
-	    }
+    	joueur = (choice.equals("1")) ? new Warrior(username) :
+            (choice.equals("2")) ? new Tank(username) :
+            (choice.equals("3")) ? new Assassin(username) :
+            (choice.equals("4")) ? new Goblin(username) :
+            (choice.equals("5")) ? new Mage(username) :
+            new Player(username); // sans sous-classe si rien rentré
 		
 		
 		// chargement de la carte
@@ -51,6 +51,11 @@ public class MainGame
 	    int[] spawnCoordinates = carte.search_spawn();
 	    carte.playerX = spawnCoordinates[1];
 	    carte.playerY = spawnCoordinates[0];
+	    
+		WeaponStore shop_spawn = new WeaponStore("Magasin du début",2,12);
+		shop_spawn.remove(shop_spawn.stock.get(3)); shop_spawn.remove(shop_spawn.stock.get(2)); shop_spawn.remove(shop_spawn.stock.get(1)); // supprime armes par defaut
+		shop_spawn.add(new Hammer("Massue", 75, 20));
+		carte.add_shop(shop_spawn);
 	    
 		WeaponStore shop_default = new WeaponStore("Magasin 308",4,4);
 		carte.add_shop(shop_default);
@@ -62,7 +67,7 @@ public class MainGame
 		carte.gen_monster(1, "Squelette");
 		carte.gen_monster(1, "Squelette");
 		carte.gen_monster(1, "Squelette");
-		carte.gen_monster(1, "Squelette");
+		carte.gen_monster(2, "Squelette");
 	    System.out.println("\n\n\n\n");
 	    
 	    
@@ -83,7 +88,10 @@ public class MainGame
 			System.out.println(" Exp\t: "+joueur.exp+"/"+joueur.exp_need);
 			System.out.println(" Arme\t: "+joueur.selectedWeapon.name());
 			System.out.println("----------------------------------------");
-			System.out.println("[Z] Haut [S] Bas [Q] Gauche [D] Droite");
+			System.out.println("[Z] Haut");
+			System.out.println("[S] Bas");
+			System.out.println("[Q] Gauche");
+			System.out.println("[D] Droite");
 			System.out.println("[1] Afficher mon sac");
 			
 		    input = new Scanner(System.in);
@@ -123,11 +131,55 @@ public class MainGame
 		    }
 		    if (next_case_type == "monster") // si la prochaine case est un magasin
 		    {
+		    	Random r = new Random();
 		    	Monster monster_case = carte.getEntityOnPlayer();
 		    	Fight my_fight = new Fight(joueur, monster_case);
 		    	clear();
-		    	my_fight.start();
-		    	clear();
+		    	boolean alive = my_fight.start();
+		    	carte.gen_monster(r.nextInt(1)+monster_case.level, monster_case.type); // regeneration du monstre sur la carte avec une chance de montée de niveau
+		    	carte.remove_monster(monster_case);
+		    	wait_now();
+		    	if (alive == false)
+		    	{
+		    		done = true; // fin du jeu
+		    		System.out.println("\nVous êtes mort\n");
+		    	}
+		    }
+		    if (next_case_type == "next_map") // si la prochaine case est un magasin
+		    {
+		    	if (carte.map_path.equals("assets/maps/a.csv")) // début map b, fin du niveau a
+		    	{
+		    		carte = new Map("assets/maps/b.csv");
+		    	    spawnCoordinates = carte.search_spawn();
+		    	    carte.playerX = spawnCoordinates[1];
+		    	    carte.playerY = spawnCoordinates[0];
+		    	    
+		    		shop_default = new WeaponStore("Magasin au milieu de nul part",17,7);
+		    		carte.add_shop(shop_default);
+		    		
+		    		carte.gen_monster(2, "Slime");
+		    		carte.gen_monster(2, "Slime");
+		    		carte.gen_monster(3, "Slime");
+		    		carte.gen_monster(3, "Slime");
+		    		carte.gen_monster(3, "Slime");
+		    		carte.gen_monster(1, "Squelette");
+		    		carte.gen_monster(2, "Squelette");
+		    		carte.gen_monster(3, "Squelette");
+		    		carte.gen_monster(3, "Squelette");
+		    	}
+		    	if (carte.map_path.equals("assets/maps/b.csv")) // début map c, fin du niveau b
+		    	{
+		    		carte = new Map("assets/maps/c.csv");
+		    	    spawnCoordinates = carte.search_spawn();
+		    	    carte.playerX = spawnCoordinates[1];
+		    	    carte.playerY = spawnCoordinates[0];
+		    		
+		    		carte.gen_monster(1, "Boss");
+		    	}
+		    	if (carte.map_path.equals("assets/maps/c.csv")) // fin du jeu
+		    	{
+		    		System.out.println("Félicitations, "+joueur.username+", vous avez terminé Sorbonne RPG avec "+joueur.mana+"xp accumulé.");
+		    	}
 		    }
 		}
 	}

@@ -2,7 +2,8 @@ package rpg_game;
 
 import java.util.Scanner;
 
-public class Fight {
+public class Fight
+{
     public Player joueur;
     public Monster monster;
     
@@ -39,39 +40,50 @@ public class Fight {
 			System.out.println("----------------------------------------");
 			System.out.println("[1] Attaquer");
 			System.out.println("[2] Fuir (perte d'HP définif et d'argent)");
-			
+			System.out.print("\n\nQue voulez vous faire?\n> ");
 		    Scanner input = new Scanner(System.in);
-		    System.out.print("\n\nQue voulez vous faire?\n> ");
 		    String choice = input.nextLine();
+		    clear();
 		    switch(choice)
 		    {
 		    	case "1":
 		    		player_hp = player_hp - monster.damage;
 		    		monster_hp = monster_hp - (joueur.damage + joueur.selectedWeapon.damage());
-		    		clear();
 		    		System.out.println("Vous avez attaqué "+monster.type);
 		    		System.out.println(monster.type+" vous a attaqué");
-		    		
 		    		if (player_hp <= 0) // defaite
 		    		{
+		    			System.out.println("Vous avez perdu le combat.");
 		    			joueur.hp = 0;
 		    			return false;
 		    		}
 		    		else if (monster_hp <= 0) // victoire
 		    		{
 		    			// on gagne de l'argent et de l'exp en fonction de la puissance de l'ennemi
-		    			int money_reward = ((monster.damage*7 + monster.hp)/5);
-		    			int exp_reward = ((monster.damage*7 + monster.hp)/3);
-		    			
+		    			int money_reward = (int) (((monster.damage*7 + monster.hp)/5)*joueur.money_multiplier);
+		    			int exp_reward = (int) (((monster.damage*7 + monster.hp)/3)*joueur.exp_multiplier);
 		    			joueur.money = joueur.money+money_reward;
 		    			joueur.add_exp(exp_reward);
+		    			System.out.println("Vous avez gagné le combat (+"+money_reward+"💲 | "+exp_reward+"xp)");
 		    			return true;
 		    		}
+		    		break;
+		    		
 		    		
 		    	case "2": // FUITE
-	    			joueur.money = 0; // perte de l'argent
-	    			joueur.hp = (int) (joueur.hp - (joueur.hp*0.25)); // perte d'un quart des hp definitevement
-	    			return true;
+		    		if (joueur.hp < 6)
+		    		{
+		    			System.out.println("Trop faible pour vous enfuir, l'ennemi vous a terrasé.");
+		    			return false;
+		    		}
+		    		else
+		    		{
+			    		System.out.println("Vous vous êtes enfui, laissant derrière vous argent et cicatrices...");
+		    			joueur.money = 0; // perte de l'argent
+		    			joueur.hp = (int) (joueur.hp - (joueur.hp*0.25)); // perte d'un quart des hp definitevement
+		    			return true;
+		    		}
+
 		    		
 		    	default:
 		    		//pass
@@ -83,7 +95,7 @@ public class Fight {
 	public static void clear()
 	{
 	    //System.out.print("\033[H\033[2J");  
-		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		//System.out.flush();
 		
 	}

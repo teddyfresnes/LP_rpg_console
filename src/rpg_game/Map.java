@@ -69,7 +69,7 @@ public class Map
 	
 	public void add_shop(WeaponStore shop) // magasin plage de 100 à 200
 	{
-		mapData[shop.shopX][shop.shopY] = "3";
+		mapData[shop.shopY][shop.shopX] = "3";
 		shops.add(shop);
 	}
 	
@@ -155,72 +155,40 @@ public class Map
     	        if (playerY > 0) 
     	        {
     	            int cell_value = Integer.parseInt(mapData[playerY - 1][playerX]); 
-    	            if (cell_value == 3) // si c'est un magasin
-    	            {
-    	            	case_you_go = "shop";
-    	            } 
-    	            if (cell_value == 5) // si c'est un monstre
-    	            {
-    	            	case_you_go = "monster";
-    	            } 
-    	            if (cell_value != 1) // si c'est un mur
-    	            {
-    	                playerY--;
-    	            }
+    	            if (cell_value == 3) {case_you_go = "shop";} 
+    	            if (cell_value == 5) {case_you_go = "monster";} 
+    	            if (cell_value == 4) {case_you_go = "next_map";} 
+    	            if (cell_value != 1) {playerY--;} // sinon deplacement
     	        }
     	        break;
     	    case "DOWN":
     	        if (playerY < mapData.length - 1) 
     	        {
     	            int cell_value = Integer.parseInt(mapData[playerY + 1][playerX]);
-    	            if (cell_value == 3) 
-    	            {
-    	            	case_you_go = "shop";
-    	            } 
-    	            if (cell_value == 5)
-    	            {
-    	            	case_you_go = "monster";
-    	            } 
-    	            if (cell_value != 1) 
-    	            {
-    	                playerY++;
-    	            }
+    	            if (cell_value == 3) {case_you_go = "shop";} 
+    	            if (cell_value == 5) {case_you_go = "monster";} 
+    	            if (cell_value == 4) {case_you_go = "next_map";} 
+    	            if (cell_value != 1) {playerY++;}
     	        }
     	        break;
     	    case "LEFT":
     	        if (playerX > 0) 
     	        {
     	            int cell_value = Integer.parseInt(mapData[playerY][playerX - 1]);
-    	            if (cell_value == 3) 
-    	            {
-    	            	case_you_go = "shop"; 
-    	            } 
-    	            if (cell_value == 5)
-    	            {
-    	            	case_you_go = "monster";
-    	            } 
-    	            if (cell_value != 1) 
-    	            {
-    	                playerX--;
-    	            }
+    	            if (cell_value == 3) {case_you_go = "shop";} 
+    	            if (cell_value == 5) {case_you_go = "monster";} 
+    	            if (cell_value == 4) {case_you_go = "next_map";} 
+    	            if (cell_value != 1) {playerX--;}
     	        }
     	        break;
     	    case "RIGHT":
     	        if (playerX < mapData[playerY].length - 1) 
     	        {
     	            int cell_value = Integer.parseInt(mapData[playerY][playerX + 1]);
-    	            if (cell_value == 3)
-    	            {
-    	            	case_you_go = "shop"; 
-    	            } 
-    	            if (cell_value == 5)
-    	            {
-    	            	case_you_go = "monster";
-    	            } 
-    	            if (cell_value != 1) 
-    	            {
-    	                playerX++;
-    	            }
+    	            if (cell_value == 3) {case_you_go = "shop";} 
+    	            if (cell_value == 5) {case_you_go = "monster";} 
+    	            if (cell_value == 4) {case_you_go = "next_map";} 
+    	            if (cell_value != 1) {playerX++;}
     	        }
     	        break;
     	}
@@ -247,5 +215,11 @@ public class Map
         Monster monster = new Monster(x, y, monster_type, lvl);
         this.monsters.add(monster);
         this.mapData[y][x] = "5"; // ajout monstre
+    }
+    
+    public void remove_monster(Monster monster)
+    {
+        monsters.remove(monster);
+        mapData[monster.y][monster.x] = "0";
     }
 }
