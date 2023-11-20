@@ -19,14 +19,16 @@ Projet de création d'un jeu RPG en java en console Eclipse avec :
 - Un fichier fight qui gère la rencontre avec les monstres, le combat et les options, les récompenses variables selon la puissance de l'ennemi, la défaite du joueur
 ### Screenshot
 - Choix de la classe de joueur :
-![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/4d5285de-1fd8-4228-b98f-8bb7b25628db)
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/4af20b96-6bb9-49a0-a8d9-30b383624f36)
 - Interface de base :
-![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/1b046dc2-1e8a-42c0-8577-f80dd2546321)  
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/8d807b67-c5b0-4f7e-b740-dd65279b3ad3)
 - Un exemple de magasin :
-![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/e08cdd34-de98-4ccb-8883-fc3671a2f58f)
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/d37ef2ed-0712-4bcf-a44f-69c156ecae3e)
 - Exemples de combats :
-![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/24ba5705-f3dc-4cf3-a515-19b2319d3389)
-![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/aa34a30b-c8e2-447a-8b50-977c91de62d5)
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/275a3ddc-51d8-4b40-968d-fef9e8abbca5)
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/89511588-8206-459b-a710-a2e6ec2dd289)
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/035d6414-16e7-4472-a2eb-d8c680c0b6c0)
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/e9c9476f-52fc-4073-a8ed-15e1dbe43de5)
 - Changement de niveau (niveau suivant) :
 ![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/3fd74703-01fd-4340-ae29-11a33510b406)
 
