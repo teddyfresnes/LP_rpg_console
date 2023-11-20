@@ -51,13 +51,7 @@ public class Fight
 		    		monster_hp = monster_hp - (joueur.damage + joueur.selectedWeapon.damage());
 		    		System.out.println("Vous avez attaqué "+monster.type);
 		    		System.out.println(monster.type+" vous a attaqué");
-		    		if (player_hp <= 0) // defaite
-		    		{
-		    			System.out.println("Vous avez perdu le combat.");
-		    			joueur.hp = 0;
-		    			return false;
-		    		}
-		    		else if (monster_hp <= 0) // victoire
+		    		if (monster_hp <= 0) // victoire
 		    		{
 		    			// on gagne de l'argent et de l'exp en fonction de la puissance de l'ennemi
 		    			int money_reward = (int) (((monster.damage*7 + monster.hp)/5)*joueur.money_multiplier);
@@ -66,6 +60,12 @@ public class Fight
 		    			joueur.add_exp(exp_reward);
 		    			System.out.println("Vous avez gagné le combat (+"+money_reward+"💲 | "+exp_reward+"xp)");
 		    			return true;
+		    		}
+		    		else if (player_hp <= 0) // defaite
+		    		{
+		    			System.out.println("Vous avez perdu le combat.");
+		    			joueur.hp = 0;
+		    			return false;
 		    		}
 		    		break;
 		    		

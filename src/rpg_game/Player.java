@@ -113,11 +113,11 @@ public class Player
     		//montée de niveau
     		this.level++;
     		System.out.println("\nVous montez au niveau "+this.level+" :");
-    		this.exp_need = (int) (this.exp_need * 1.4); // 40% d'exp de plus nécessaire pour monter de niveau
+    		this.exp_need = (int) (this.exp_need * 1.3); // 30% d'exp de plus nécessaire pour monter de niveau
     		
     		Random r = new Random();
     		int add_damage = (int) ((r.nextInt(1) + 1) * this.damage_multiplier);
-    		int add_hp = (int) ((r.nextInt(8) + 1) * this.hp_multiplier);
+    		int add_hp = (int) ((r.nextInt(8) + 2) * this.hp_multiplier);
     		System.out.println("Dégats "+this.damage+"⚔ (+"+add_damage+"⚔)");
     		System.out.println("HP "+this.hp+"❤ (+"+add_hp+"❤)\n");
     		this.damage = this.damage + add_damage;

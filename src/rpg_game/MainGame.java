@@ -167,7 +167,7 @@ public class MainGame
 		    		carte.gen_monster(3, "Squelette");
 		    		carte.gen_monster(3, "Squelette");
 		    	}
-		    	if (carte.map_path.equals("assets/maps/b.csv")) // début map c, fin du niveau b
+		    	else if (carte.map_path.equals("assets/maps/b.csv")) // début map c, fin du niveau b
 		    	{
 		    		carte = new Map("assets/maps/c.csv");
 		    	    spawnCoordinates = carte.search_spawn();
@@ -176,7 +176,7 @@ public class MainGame
 		    		
 		    		carte.gen_monster(1, "Boss");
 		    	}
-		    	if (carte.map_path.equals("assets/maps/c.csv")) // fin du jeu
+		    	else if (carte.map_path.equals("assets/maps/c.csv")) // fin du jeu
 		    	{
 		    		System.out.println("Félicitations, "+joueur.username+", vous avez terminé Sorbonne RPG avec "+joueur.mana+"xp accumulé.");
 		    	}
@@ -188,7 +188,7 @@ public class MainGame
 	public static void clear()
 	{
 	    //System.out.print("\033[H\033[2J");  
-		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		//System.out.flush();
 		
 	}
