@@ -30,5 +30,7 @@ Projet de création d'un jeu RPG en java en console Eclipse avec :
 ![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/035d6414-16e7-4472-a2eb-d8c680c0b6c0)
 ![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/e9c9476f-52fc-4073-a8ed-15e1dbe43de5)
 - Changement de niveau (niveau suivant) :
-![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/3fd74703-01fd-4340-ae29-11a33510b406)
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/1080b7f5-354f-4692-8e1b-93a903f789b2)
+![image](https://github.com/teddyfresnes/LP_rpg_console/assets/80900011/7a0cfc9e-b84a-4324-b096-3472fc378013)
+
 
